@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Slider</title>
+<style>
+    /* Style for the slider container */
+    .slider-container {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Style for the images */
+    .slider-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* Hide all images by default, except the first one */
+    .slider-container img:not(:first-child) {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div class="slider-container">
+    <img src="rs232.jpg" alt="Image 1">
+    <img src="switch.jpg" alt="Image 2">
+    <img src="logo.png" alt="Image 3">
+</div>
+
+<script>
+    // JavaScript for changing images
+    document.addEventListener("DOMContentLoaded", function() {
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.slider-container img');
+        const totalImages = images.length;
+
+        function showImage(index) {
+            images.forEach((image, i) => {
+                if (i === index) {
+                    image.style.display = 'block';
+                } else {
+                    image.style.display = 'none';
+                }
+            });
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % totalImages;
+            showImage(currentIndex);
+        }
+
+        // Change image every 3 seconds
+        setInterval(nextImage, 3000);
+    });
+</script>
+
+</body>
+</html>
